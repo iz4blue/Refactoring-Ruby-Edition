@@ -70,6 +70,8 @@ class Customer
     result
   end
 
+  private
+
   def total_charge
     @rentals.inject(0) { |sum, rental| sum + rental.charge }
   end
