@@ -52,7 +52,7 @@ class Customer
     total_amount, frequent_renter_points = 0, 0
     result = "고객 #{@name}의 대여 기록\n"
     @rentals.each do |element|
-      this_amount = amount_for(element)
+      this_amount = element.charge
 
       # 적립 포인트를 더함
       frequent_renter_points += 1
@@ -70,9 +70,5 @@ class Customer
     result += "대여료는 #{total_amount}입니다.\n"
     result += "적립 포인트는 #{frequent_renter_points}입니다."
     result
-  end
-
-  def amount_for(rental)
-    rental.charge
   end
 end
