@@ -66,8 +66,17 @@ class Customer
     end
 
     # 푸터 행 추가
-    result += "대여료는 #{total_amount}입니다.\n"
+    result += "대여료는 #{total_charge}입니다.\n"
     result += "적립 포인트는 #{frequent_renter_points}입니다."
+    result
+  end
+
+  def total_charge
+    result = 0
+    @rentals.each do |element|
+      result += element.charge
+    end
+
     result
   end
 end
