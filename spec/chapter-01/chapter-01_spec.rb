@@ -5,8 +5,8 @@ require 'chapter-01/chapter-01'
 RSpec.describe Customer, "#statement" do
   context '코딩이 잘 되었는지 파악한다' do
     before(:each) do
-      @m_01 = Movie.new('movie-01', Movie::NEW_RELEASE)
-      @m_02 = Movie.new('movie-02', Movie::REGULAR)
+      @m_01 = Movie.new('movie-01', NewReleasePrice.new)
+      @m_02 = Movie.new('movie-02', RegularPrice.new)
     end
 
     it 'statement method' do
