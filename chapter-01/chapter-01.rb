@@ -53,7 +53,7 @@ class Customer
   end
 
   def statement
-    total_amount, frequent_renter_points = 0, 0
+    frequent_renter_points = 0, 0
     result = "고객 #{@name}의 대여 기록\n"
     @rentals.each do |element|
 
@@ -62,7 +62,6 @@ class Customer
 
       # 이번 대여의 계산 결과를 표시
       result += "\t" + element.movie.title + "\t" + element.charge.to_s + "\n"
-      total_amount += element.charge
     end
 
     # 푸터 행 추가
@@ -72,11 +71,6 @@ class Customer
   end
 
   def total_charge
-    result = 0
-    @rentals.each do |element|
-      result += element.charge
-    end
-
-    result
+    @rentals.inject(0) { |sum, rental| sum + rental.charge }
   end
 end
