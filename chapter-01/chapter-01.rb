@@ -65,6 +65,21 @@ class Customer
     result
   end
 
+  def html_statement
+    result ="<h1>고객 <em>#{@name}</em>의 대여 기록</h1><p>\n"
+    @rentals.each do |element|
+      # 이번 대여의 계산 결과를 표시
+      result += "\t" + element.movie.title + ": " + element.charge.to_s + "<br>\n"
+    end
+
+    # 푸터 행 추가
+    result += "<p>대여료는 <em>#{total_charge}</em>입니다.<p>\n"
+    result += "적립 포인트는 " +
+        "<em>#{total_frequent_renter_points}</em> " +
+        "입니다.<p>"
+    result
+  end
+
   private
 
   def total_charge
