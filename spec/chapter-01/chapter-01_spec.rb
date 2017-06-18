@@ -9,7 +9,7 @@ RSpec.describe Customer, "#statement" do
       @m_02 = Movie.new('movie-02', Movie::REGULAR)
     end
 
-    it '신규 유져 생성 및 영화 랜탈 테스트' do
+    it 'statement method' do
       joseph = Customer.new('joseph')
 
       rent_1 = Rental.new(@m_01, 3)
@@ -23,6 +23,23 @@ RSpec.describe Customer, "#statement" do
       expect(stdout).to match('movie-02')
       expect(stdout).to match('대여료는 18.5')
       expect(stdout).to match('적립 포인트는 3')
+    end
+
+    it 'html_statement method' do
+      joseph = Customer.new('joseph')
+
+      rent_1 = Rental.new(@m_01, 3)
+      rent_2 = Rental.new(@m_02, 7)
+      joseph.add_rental(rent_1)
+      joseph.add_rental(rent_2)
+
+      stdout = joseph.html_statement
+      p stdout
+
+      expect(stdout).to match('movie-01')
+      expect(stdout).to match('movie-02')
+      expect(stdout).to match('대여료는 <em>18.5</em>')
+      expect(stdout).to match('적립 포인트는 <em>3</em>')
     end
   end
 end
